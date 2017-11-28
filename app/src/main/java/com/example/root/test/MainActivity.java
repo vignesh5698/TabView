@@ -20,10 +20,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
+        if (getSupportActionBar() != null) {
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);}
 
         viewPager = (ViewPager)findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
     class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<android.app.Fragment> mFragmentList = new ArrayList<>();
+        private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
         public ViewPagerAdapter(FragmentManager manager) {
@@ -59,23 +60,16 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentList.size();
         }
 
-        public void addFragment(android.app.Fragment fragment, String title) {
-            mFragmentList.add(fragment);
+        public void addFragment(Fragment frag, String title) {
+            mFragmentList.add(frag);
             mFragmentTitleList.add(title);
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
+
             return mFragmentTitleList.get(position);
         }
     }
 }
 
-//
-//
-//android:allowBackup="true"
-//        android:icon="@mipmap/ic_launcher"
-//        android:label="@string/app_name"
-//        android:roundIcon="@mipmap/ic_launcher_round"
-//        android:supportsRtl="true"
-//        android:theme="@style/MyMaterialTheme" >
